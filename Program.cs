@@ -5,7 +5,6 @@
         static void Main(string[] args)
         {
             string input;
-            bool addNum = false;
             int sum = 0;
             int avg;
 
@@ -13,7 +12,7 @@
             Console.WriteLine("Adj meg 10 számot!");
             for (int i = 0; i < num.Length; i++)
             {
-                addNum = true;
+                bool addNum = true;
                 input = Console.ReadLine();
                 for (int j = 0; j < num.Length; j++)
                 {
@@ -25,7 +24,6 @@
                         break;
                     }
                 }
-                Console.WriteLine("asd");
                 if (addNum == true)
                 {
                     num[i] = int.Parse(input);
