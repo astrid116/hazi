@@ -5,6 +5,7 @@
         static void Main(string[] args)
         {
             string input;
+            bool addNum = false;
             int sum = 0;
             int avg;
 
@@ -12,6 +13,7 @@
             Console.WriteLine("Adj meg 10 számot!");
             for (int i = 0; i < num.Length; i++)
             {
+                addNum = true;
                 input = Console.ReadLine();
                 for (int j = 0; j < num.Length; j++)
                 {
@@ -19,14 +21,23 @@
                     {
                         Console.WriteLine("Egy számot csak egyszer adhatsz meg.");
                         i--;
+                        addNum = false;
                         break;
                     }
                 }
-                num[i] = int.Parse(input);
+                Console.WriteLine("asd");
+                if (addNum == true)
+                {
+                    num[i] = int.Parse(input);
+                }
             }
             for (int i = 0; i < num.Length; i++)
             {
                 sum += num[i];
+            }
+            for (int i = 0; i < num.Length; i++)
+            {
+                Console.WriteLine(num[i]);
             }
             avg = sum / num.Length;
             Console.WriteLine("A számok összege: {0}", sum);
