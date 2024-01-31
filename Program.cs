@@ -4,42 +4,53 @@
     {
         static void Main(string[] args)
         {
-            string input;
-            int sum = 0;
-            int avg;
+            var num = new int[12];
+            int minValue = int.MaxValue;
+            int maxValue = int.MinValue;
+            int minPosInArr = 0;
+            int maxPosInArr = 0;
+            float avg = 0;
+            int input;
 
-            var num = new int[10];
-            Console.WriteLine("Adj meg 10 számot!");
-            for (int i = 0; i < num.Length; i++)
+            Console.WriteLine("Írd be, hogy mennyit spóroltál:");
+            
+
+            for (int i = 1; i < num.Length + 1; i++)
             {
-                bool addNum = true;
-                input = Console.ReadLine();
-                for (int j = 0; j < num.Length; j++)
+                Console.Write("{0}. hónap: ", i);
+                input = int.Parse(Console.ReadLine());
+                num[i - 1] = input;
+            }
+ 
+            for (int i = 1; i < num.Length + 1; i++)
+            {
+                Console.WriteLine("{0}. hónap spórolása: {1} ", i, num[i - 1]);
+            }
+
+            for (int i = 1; i < num.Length + 1; i++)
+            {
+                if (num[i - 1] < minValue)
                 {
-                    if (num[j] == int.Parse(input))
-                    {
-                        Console.WriteLine("Egy számot csak egyszer adhatsz meg.");
-                        i--;
-                        addNum = false;
-                        break;
-                    }
+                    minValue = num[i - 1];
+                    minPosInArr = i;
                 }
-                if (addNum == true)
+                if (num[i - 1] > maxValue)
                 {
-                    num[i] = int.Parse(input);
+                    maxValue = num[i - 1];
+                    maxPosInArr = i;
                 }
             }
-            for (int i = 0; i < num.Length; i++)
+            Console.WriteLine("\nLegkevesebb spórolás a(z) {0}. hónapban volt {1}Ft-al.", minPosInArr, minValue);
+            Console.WriteLine("Legmagasabb spórolás a(z) {0}. hónapban volt {1}Ft-al.\n", maxPosInArr, maxValue);
+
+            for (int i = 1; i < num.Length + 1; i++)
             {
-                sum += num[i];
+                avg += num[i - 1];
             }
-            for (int i = 0; i < num.Length; i++)
-            {
-                Console.WriteLine(num[i]);
-            }
-            avg = sum / num.Length;
-            Console.WriteLine("A számok összege: {0}", sum);
-            Console.WriteLine("A számok átlaga: {0}", avg);
+            avg = avg / 12;
+            Console.WriteLine("Átlag spórolás: {0:0.00}", avg);
+
+
             Console.ReadKey();
         }
     }
